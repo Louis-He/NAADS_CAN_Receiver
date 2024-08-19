@@ -22,14 +22,7 @@ bool NAAD_ALERT_MESSAGE::try_parse_alert() {
         sender = alert.child("sender").child_value();
         sent = alert.child("sent").child_value();
         status = alert.child("status").child_value();
-        pugi::xml_node heart_beat = alert.child("references");
-
-        if (heart_beat.empty()) {
-            type = NAAD_ALERT_TYPE::HEART_BEAT;
-            return true;
-        } else {
-            type = NAAD_ALERT_TYPE::ALERT;
-        }
+        type = NAAD_ALERT_TYPE::ALERT;
     } else {
         type = NAAD_ALERT_TYPE::INVALID;
         return false;
@@ -54,14 +47,15 @@ bool NAAD_ALERT_MESSAGE::try_parse_alert() {
         }
     }
 
-    const pugi::xml_node alertAreaDesc = alert_info.child("area").child("areaDesc");
-    areaDesc = alertAreaDesc.child_value();
+    for (const pugi::xml_node alertArea : alert_info.children("area")) {
+        const pugi::xml_node alertAreaDesc = alertArea.child("areaDesc");
+        areaDesc.push_back(alertAreaDesc.child_value());
+    }
 
     return true;
 }
 
 void NAAD_ALERT_MESSAGE::print() const {
-    std::cout << this->raw_message << std::endl;
     if (type == NAAD_ALERT_TYPE::INVALID) {
         std::cout << "Invalid alert message" << std::endl;
         return;
@@ -71,24 +65,21 @@ void NAAD_ALERT_MESSAGE::print() const {
     std::cout << "Sent: " << sent << std::endl;
     std::cout << "Status: " << status << std::endl;
 
-    if (type == NAAD_ALERT_TYPE::HEART_BEAT) {
-        std::cout << "Heart Beat Message" << std::endl;
-        std::cout << "" << std::endl;
-        return;
-    }
-
     std::cout << "Headline: " << headline << std::endl;
     std::cout << "Description: " << description << std::endl;
     std::cout << "Urgency: " << urgency << std::endl;
     std::cout << "Severity: " << severity << std::endl;
     std::cout << "Certainty: " << certainty << std::endl;
-    std::cout << "Area Description: " << areaDesc << std::endl;
     std::cout << "Broadcast Immediately: " << (broadcastImmediate ? "Yes" : "No") << std::endl;
-
     if (wirelessImmediate) {
         std::cout << "****** EMERGENCY ALERT - WIRELESS IMMEDIATE ******" << std::endl;
     } else {
         std::cout << "Wireless Immediately: No" << std::endl;
+    }
+
+    std::cout << "Area Description: " << std::endl;
+    for (const std::string& area : areaDesc) {
+        std::cout << "  " << area << std::endl;
     }
 
     std::cout << "End of alert" << std::endl;

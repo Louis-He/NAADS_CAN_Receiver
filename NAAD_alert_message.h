@@ -6,9 +6,9 @@
 #define NAAD_ALERT_MESSAGE_H
 
 #include <string>
+#include <vector>
 
 enum NAAD_ALERT_TYPE {
-    HEART_BEAT,
     ALERT,
     INVALID
 };
@@ -36,7 +36,7 @@ private:
     std::string urgency;
     std::string severity;
     std::string certainty;
-    std::string areaDesc;
+    std::vector<std::string> areaDesc;
 
     bool broadcastImmediate;
     bool wirelessImmediate;
