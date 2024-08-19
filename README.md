@@ -1,20 +1,23 @@
 # NAADS_CAN_Receiver
 
 This is a simple CAN receiver for the NAADS project. The weather alerts and emergency alerts have a public-facing communication protocol.
-This project intends to unlock the potential to receive the messages on any devices that can connect to the internet.
+This project intends to unlock the potential to receive messages on any devices that can connect to the internet.
 
-This project is written in C++ and uses the TCP/IP protocol to check messages sent from NAAD System.
+This project is written in C++ and uses the TCP/IP protocol to check messages sent from the NAAD System.
 The implementation is based on [NAAD System - LMD User Guide - Release 10.0](https://alerts.pelmorex.com/wp-content/uploads/2021/06/NAADS-LMD-User-Guide-R10.0.pdf)
-. The receiver listens for incoming messages, parse them and prints them to the console.
+. The receiver listens to incoming messages, parses them, and prints them on the console.
+
+## Keyword
+Alert Ready, NAADS, Canadian Weather Alert, Emergency Alert
 
 ## Getting Started
 
-Use the CMakeLists.txt file to build the project. The project uses the pugixml library to parse the incoming messages. The library is included in the project.
+Use the CMakeLists.txt file to build the project. The project uses the pugixml library to parse incoming messages. The library is included in the project.
 
 ## Disclaimer
 
-This project is not fully tested against all types of messages that can be sent by the NAAD System.
-The project is a simple implementation to demonstrate how to receive and parse messages from the NAAD System.
+This project is not fully tested against all types of messages that the NAAD System can send.
+The project is a simple implementation that demonstrates how to receive and parse messages from the NAAD System.
 
 ## Example Output
 
