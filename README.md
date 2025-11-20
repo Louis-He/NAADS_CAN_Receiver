@@ -35,6 +35,41 @@ To build the project, you need to have CMake installed.
    ```
 
 The executable will be generated in the `build` directory.
+
+## Running the Web GUI
+
+A modern web interface is available to view alerts in real-time with a premium dark-themed dashboard.
+
+### Prerequisites
+
+- Node.js (installed via nvm or other package manager)
+
+### Setup and Run
+
+1. **Start the Backend Server** (in one terminal):
+   ```bash
+   cd web/server
+   npm start
+   ```
+   
+   The server will start on `http://localhost:3000` and automatically launch the C++ receiver.
+
+2. **Start the Frontend Client** (in a new terminal):
+   ```bash
+   cd web/client
+   npm run dev
+   ```
+   
+   Open your browser to the URL shown (typically `http://localhost:5173`).
+
+### Features
+
+- **Real-time Updates**: Alerts appear instantly via WebSocket connection
+- **Visual Severity Indicators**: Color-coded cards based on alert severity (Extreme, Severe, Moderate, Minor)
+- **Emergency Alerts**: Red pulsing animation for wireless immediate alerts
+- **Responsive Design**: Works on desktop and mobile devices
+
+
 ## Disclaimer
 
 This project is not fully tested against all types of messages that the NAAD System can send.
