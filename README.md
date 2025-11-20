@@ -14,6 +14,27 @@ Alert Ready, NAADS, Canadian Weather Alert, Emergency Alert
 
 Use the CMakeLists.txt file to build the project. The project uses the pugixml library to parse incoming messages. The library is included in the project.
 
+## How to build
+
+To build the project, you need to have CMake installed.
+
+1. Create a build directory:
+   ```bash
+   mkdir build
+   cd build
+   ```
+
+2. Generate the build files:
+   ```bash
+   cmake ..
+   ```
+
+3. Build the project:
+   ```bash
+   cmake --build .
+   ```
+
+The executable will be generated in the `build` directory.
 ## Disclaimer
 
 This project is not fully tested against all types of messages that the NAAD System can send.
