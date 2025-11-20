@@ -3,3 +3,4 @@ cmake-build-debug
 .DS_Store
 build/
 web/server/node_modules/
+web/client/node_modules/
